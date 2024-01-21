@@ -17,7 +17,7 @@
   list-style-type: none;
 }
 
-.loader {
+/* .loader {
   position: relative;
   display: block;
   top: 0%;
@@ -51,6 +51,53 @@
   100% {
     transform: rotate(360deg);
   }
+} */
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 1s linear infinite;
+}
+.loader::before,
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 10px solid #10ae20;
+  animation: prixClipFix 2s linear infinite;
+}
+.loader::after {
+  transform: rotate3d(90, 90, 0, 180deg);
+  border-color: hsl(116, 93%, 40%);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  75%,
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
 }
 
 .form {
@@ -59,6 +106,10 @@
   gap: 8px;
   margin-bottom: 32px;
   margin-top: 36px;
+}
+
+.hidden {
+  display: none;
 }
 
 .text-input {
@@ -146,7 +197,7 @@ li:hover {
   align-items: center;
   gap: 8px;
   color: #000;
-  font-family: Montserrat sans-serif;
+  font-family: Montserrat;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
@@ -154,7 +205,30 @@ li:hover {
 
 .image-value {
   color: #000;
-  font-family: Montserrat sans-serif;
+  font-family: Montserrat;
   font-size: 16px;
   font-weight: 400;
+}
+
+.load-more-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  background: #4e75ff;
+  margin: 0 auto;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  margin-top: 32px;
+}
+
+.load-more-btn:hover {
+  background: #6c8cff;
 }
