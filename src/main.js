@@ -21,7 +21,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 form.addEventListener("submit", onSubmit);
 
 btnMore.addEventListener("click", loadMoreData);
-//---------------------------------------------------ф-я при натисканні Search
+//-----------------------------------------------------ф-я при натисканні Search
 async function onSubmit(event) {
   event.preventDefault();
   gallery.innerHTML = "";
@@ -137,7 +137,7 @@ async function loadMoreData() {
     },
   });
 };
-// ---------------------------------------------------ф-я візуалізації галереї
+// -------------------------------------------------------ф-я візуалізації галереї
  function renderGallery(arr) {
   // ф-я отримує масив зображень і генерує HTML для кожного зображення.
   // Згенерований HTML містить посилання на велике зображення ,інформацію про вподобання, перегляди, коментарі та завантаження.
@@ -170,7 +170,7 @@ async function loadMoreData() {
       `;
     }).join("");
 };
-// -------------------------------------------------------ф-ї  завантаження
+// ------------------------------------------------------- ф-ї  завантаження
 function loaderPlay() {
   loader.classList.remove("hidden");
   target.classList.remove('is-hidden');
