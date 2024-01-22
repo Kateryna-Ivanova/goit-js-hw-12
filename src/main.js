@@ -9,7 +9,6 @@ const loader = document.querySelector(".loader");
 const gallery = document.querySelector(".js-gallery");
 const btnMore = document.querySelector(".js-loadmore");
 const target = document.querySelector('.js-backdrop');
-
 let page = 1;
 let query = "";
 
@@ -25,8 +24,8 @@ btnMore.addEventListener("click", loadMoreData);
 async function onSubmit(event) {
   event.preventDefault();
   gallery.innerHTML = "";
+  // btnMore.style.display = 'block'
   btnMore.classList.add("is-hidden");
-
   page = 1;
   // Витягуємо пошуковий запит із введеної форми.
   query = event.target.elements["search"].value.trim();
@@ -90,6 +89,7 @@ async function loadMoreData() {
   // Збільшуємо номер сторінки.
   page += 1;
   loaderPlay();
+ 
   try {
     // Намагаємось отримати більше фотографій зі збільшеним номером сторінки.
     const { data: { hits, totalHits } } = await getPicture(query, page);
@@ -118,7 +118,11 @@ async function loadMoreData() {
                         position: "topRight",
                 });
   }
-   finally { loaderStop() };
+  finally {
+     
+    loaderStop()
+    scrollGallery()
+  };
 };
 // -------------------------------------------------------------ф-я запиту
  function getPicture(query, page) {
@@ -170,6 +174,15 @@ async function loadMoreData() {
       `;
     }).join("");
 };
+// ------------------------------------------------функція скролу галереї
+function scrollGallery() {
+  const cardHeight = document.querySelector('.gallery-item').getBoundingClientRect().height * 5;
+  window.scrollBy({
+    top: cardHeight,
+    behavior: "smooth",
+  });
+};
+
 // ------------------------------------------------------- ф-ї  завантаження
 function loaderPlay() {
   loader.classList.remove("hidden");
